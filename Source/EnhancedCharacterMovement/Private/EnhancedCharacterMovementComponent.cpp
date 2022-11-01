@@ -133,7 +133,11 @@ void UEnhancedCharacterMovementComponent::SetCustomMovementMode(
 	{
 		SetMovementMode(MOVE_Falling);
 	}
-	
+	else if (IsInCustomMovementMode(WalkingTagName))
+	{
+		SetMovementMode(MOVE_Walking);
+	}
+
 	Server_SetCustomMovementMode(NewCustomMovementModeClass);
 }
 
@@ -169,7 +173,7 @@ UCustomMovementModeBase* UEnhancedCharacterMovementComponent::GetPooledMovementM
 	check(NewMovementMode);
 
 	NewMovementMode->InitializeInternal();
-	
+
 	MovementModePool.Add(NewMovementMode);
 
 	return NewMovementMode;

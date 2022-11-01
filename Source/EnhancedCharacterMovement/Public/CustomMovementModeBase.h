@@ -12,7 +12,7 @@ class UEnhancedCharacterMovementComponent;
 /**
  * 
  */
-UCLASS(Abstract, NotBlueprintable)
+UCLASS(Abstract, NotBlueprintType)
 class ENHANCEDCHARACTERMOVEMENT_API UCustomMovementModeBase : public UObject
 {
 	GENERATED_BODY()
@@ -87,5 +87,5 @@ protected:
 	FGameplayTag MovementState;
 
 private:
-	uint8 bInitialized;
+	uint8 bInitialized : 1;
 };

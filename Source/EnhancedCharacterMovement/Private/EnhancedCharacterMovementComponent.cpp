@@ -71,6 +71,16 @@ void UEnhancedCharacterMovementComponent::OnMovementModeChanged(EMovementMode Pr
 			CurrentCustomMovementMode = nullptr;
 		}
 	}
+	else if (PreviousMovementMode == MOVE_Walking)
+	{
+		// If still in falling mode, which means no new mode is pushed, then release it 
+		if (IsValid(CurrentCustomMovementMode) && IsInCustomMovementMode(WalkingTagName))
+		{
+			CurrentCustomMovementMode->EndModeInternal();
+			CurrentCustomMovementMode = nullptr;
+		}
+	}
+	
 }
 
 void UEnhancedCharacterMovementComponent::OnCustomMovementModeChanged(UCustomMovementModeBase* PrevMode)
